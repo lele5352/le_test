@@ -4,6 +4,4 @@ from openpyxl import Workbook
 
 wb = Workbook()
 wb.create_sheet('123')
-
-
 print(wb.active)
