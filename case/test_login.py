@@ -26,6 +26,7 @@ class TestLogin(unittest.TestCase):
     @parameterized.expand(get_data("login.json"))
     def test_login(self, url, username, password, grant_type, expect_result, status_code):
         #调用登录方法
+
         res = ApiLogin().api_post_login(url, username, password, grant_type)
         #print('查看响应结果：', res.json())
         #断言响应信息及状态码

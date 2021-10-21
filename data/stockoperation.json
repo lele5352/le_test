@@ -1,9 +1,0 @@
-{
-    "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",
-    "frozenCount": 1,
-    "frozenReason": 0,
-    "remark": "来自脚本生成",
-    "storageLocationCode": "KW-SJQ-02",
-    "waresSkuCode": "71690438137A01",
-    "authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1SWQiOjEwLCJ1c2VyX25hbWUiOiJodWFuZ2xlbGVAcG9waWNvcm5zLmNvbSIsInYiOjI0LCJzY29wZSI6WyJhbGwiXSwiZXhwIjoxNjM0ODkzODgzLCJqdGkiOiIyMmUwN2ZlZC05ZTc3LTRhNzQtYmNlYy1hMzNiNGFhODY0ODQiLCJjbGllbnRfaWQiOiJob21hcnktZWMifQ.ixdywZiMtqxz9z9TMjF8iRmHApaIPkyh88bJ35SMRb3hLk_l0zu_YvtzB6lhJSY4PMKkHTh-Gd5cgME37mDfa18V3_anJSUM9JWBAAnL2k8rHq_VV4eiiFbt4v7orD1VDiO27SJctS_B57mmX0EwjL2TX7C65BLktXmfFNPuT-s"
-}

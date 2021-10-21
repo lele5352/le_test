@@ -27,5 +27,5 @@ if __name__ == "__main__":
     #                  data.get('status_code')
     #                  ))
     # print(arrs)
-    data = ReadJson("stockoperation.json").read_json()
+    data = ReadJson("frozen_receipt.json").read_json()
     print(data)
