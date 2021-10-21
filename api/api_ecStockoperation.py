@@ -17,8 +17,7 @@ class ApiFrozenReceipt(object):
             'remark': remark,
             'storageLocationCode': storage_location_code,
             'waresSkuCode': wares_sku_code}]
-        print(data)
-        print(type(data))
+
         return requests.post(url, headers=headers, json=data)
 
 
@@ -26,9 +25,10 @@ class ApiFrozenReceipt(object):
     def api_post_batch_defrost(self, url, authorization, integers):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
         data = [str(integers)]
-        print(data)
-        print(type(data))
-        return requests.post(url, headers=headers, data=json.dumps(data))
+        #请求body内仅有一个参数时，使用下面json方法格式化一下数据
+        datas = json.dumps(data)
+
+        return requests.post(url, headers=headers, data=datas)
 
 
     #冻结单列表查询
