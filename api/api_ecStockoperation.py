@@ -17,8 +17,7 @@ class ApiFrozenReceipt(object):
             'remark': remark,
             'storageLocationCode': storage_location_code,
             'waresSkuCode': wares_sku_code}]
-        print(data)
-        print(type(data))
+
         return requests.post(url, headers=headers, json=data)
 
 
@@ -26,11 +25,26 @@ class ApiFrozenReceipt(object):
     def api_post_batch_defrost(self, url, authorization, integers):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
         data = [str(integers)]
-        print(data)
-        print(type(data))
+
         return requests.post(url, headers=headers, data=json.dumps(data))
 
 
     #冻结单列表查询
-    def page(self):
-        pass
+    def api_post_page(self, url, authorization, wares_sku_code, storage_location_code, goods_sku_code,
+                      frozenReceiptCode, status, frozenReason, field, type, size, current):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
+        datas = {
+            "waresSkuCode": wares_sku_code,
+            "storageLocationCode": storage_location_code,
+            "goodsSkuCode": goods_sku_code,
+            "frozenReceiptCode": frozenReceiptCode,
+            "status": status,
+            "frozenReason": frozenReason,
+            #"sortField": sortField,
+            "field": field,
+            "type": type,
+            "size": size,
+            "current": current
+        }
+
+        return requests.post(url, headers=headers, data=json.dumps(datas))
