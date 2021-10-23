@@ -25,12 +25,26 @@ class ApiFrozenReceipt(object):
     def api_post_batch_defrost(self, url, authorization, integers):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
         data = [str(integers)]
-        #请求body内仅有一个参数时，使用下面json方法格式化一下数据
-        datas = json.dumps(data)
 
-        return requests.post(url, headers=headers, data=datas)
+        return requests.post(url, headers=headers, data=json.dumps(data))
 
 
     #冻结单列表查询
-    def page(self):
-        pass
+    def api_post_page(self, url, authorization, wares_sku_code, storage_location_code, goods_sku_code,
+                      frozenReceiptCode, status, frozenReason, field, type, size, current):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
+        datas = {
+            "waresSkuCode": wares_sku_code,
+            "storageLocationCode": storage_location_code,
+            "goodsSkuCode": goods_sku_code,
+            "frozenReceiptCode": frozenReceiptCode,
+            "status": status,
+            "frozenReason": frozenReason,
+            #"sortField": sortField,
+            "field": field,
+            "type": type,
+            "size": size,
+            "current": current
+        }
+
+        return requests.post(url, headers=headers, data=json.dumps(datas))

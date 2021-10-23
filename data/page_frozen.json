@@ -1,0 +1,17 @@
+{
+  "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt/page",
+  "waresSkuCode": "",
+  "storageLocationCode": "",
+  "goodsSkuCode": "",
+  "frozenReceiptCode": "",
+  "status": 1,
+  "frozenReason": "",
+  "sortField": [
+    {
+      "field": "create_time",
+      "type": "DESC"
+    }
+  ],
+  "size": 10,
+  "current": 1
+}
