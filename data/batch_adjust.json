@@ -1,0 +1,14 @@
+{
+    "adjust_pass": {
+        "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt/batchAudit",
+        "auditResult": 1,
+        "ids": [ ],
+        "rejectReason": "审批备注信息"
+    },
+    "adjust_fail": {
+        "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt/batchAudit",
+        "auditResult": 2,
+        "ids": [625],
+        "rejectReason": "审批备注信息"
+    }
+}

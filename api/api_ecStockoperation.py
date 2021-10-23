@@ -48,3 +48,58 @@ class ApiFrozenReceipt(object):
         }
 
         return requests.post(url, headers=headers, data=json.dumps(datas))
+
+
+class ApiAdjustReceipt(object):
+
+    def api_post_adjust_receipt(self, url, authorization, adjustReason, changeCount, changeType, remark,
+                                storageLocationCode, waresSkuCode):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
+        datas = [{
+            "adjustReason": adjustReason,
+            "changeCount": changeCount,
+            "changeType": changeType,
+            "remark": remark,
+            "storageLocationCode": storageLocationCode,
+            "waresSkuCode": waresSkuCode,
+            }]
+
+        return requests.post(url, headers=headers, data=json.dumps(datas))
+
+    def api_post_batch_adjust(self, url, authorization, auditResult, ids, rejectReason):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
+        datas = {
+                  "auditResult": auditResult,
+                  "ids": ids,
+                  "rejectReason": rejectReason
+                }
+        return requests.post(url, headers=headers, data=json.dumps(datas))
+
+    def api_post_page(self, url, authorization, adjustReason, adjustReceiptCode, beginAuditTime, changeType,
+                      current, endAuditTime, relationNo, size, field, type, source, status, storageLocationCode,
+                      waresSkuCode):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': authorization}
+        datas = {
+              "adjustReason": adjustReason,
+              "adjustReceiptCode": adjustReceiptCode,
+              "beginAuditTime": beginAuditTime,
+              "changeType": changeType,
+              "current": current,
+              "endAuditTime": endAuditTime,
+              "relationNo": relationNo,
+              "size": size,
+              "sortField": [
+                {
+                  "field": field,
+                  "type": type
+                }
+              ],
+              "source": source,
+              "status": status,
+              "storageLocationCode": storageLocationCode,
+              "waresSkuCode": waresSkuCode
+            }
+
+        return requests.post(url, headers=headers, data=json.dumps(datas))
+
+

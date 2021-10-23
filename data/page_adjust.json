@@ -1,0 +1,18 @@
+{
+    "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt/page",
+    "waresSkuCode": "",
+    "storageLocationCode": "",
+    "adjustReceiptCode": "",
+    "status": 1,
+    "changeType": 0,
+    "source": 0,
+    "adjustReason": "",
+    "sortField": [
+        {
+            "field": "create_time",
+            "type": "DESC"
+        }
+    ],
+    "size": 10,
+    "current": 1
+}

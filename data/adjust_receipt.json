@@ -1,0 +1,20 @@
+{
+    "adjust_add": {
+        "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt",
+        "adjustReason": 2,
+        "changeCount": 1,
+        "changeType": 2,
+        "remark": "hehehe",
+        "storageLocationCode": "KW-SJQ-02",
+        "waresSkuCode": "71690438137A01"
+    },
+    "adjust_reduce": {
+        "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt",
+        "adjustReason": 3,
+        "changeCount": 1,
+        "changeType": 1,
+        "remark": "hehehe",
+        "storageLocationCode": "KW-SJQ-02",
+        "waresSkuCode": "71690438137A01"
+    }
+}
