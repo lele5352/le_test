@@ -42,7 +42,6 @@ class FrozenReceipt(object):
 
 
 
-
     #解冻/批量解冻单
     def batch_defrost(self,filepath):
         datas = get_data(filepath)

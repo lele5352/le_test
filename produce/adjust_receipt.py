@@ -1,6 +1,7 @@
 from tools.read_json import ReadJson
 from produce.login import Login
-from  api.api_ecStockoperation import ApiAdjustReceipt
+from api.api_ecStockoperation import ApiAdjustReceipt
+from data.get_data import GetData
 
 def get_data(data_paht):
     return ReadJson(data_paht).read_json()
@@ -13,6 +14,7 @@ class AdjustReceipt(object):
     def add_adjust_receipt(self, data_path, token_path):
         datas = get_data(data_path)
         authorization = get_authorization(token_path)
+
 
         datas = datas["adjust_add"]
         url = datas.get("url")
@@ -119,7 +121,7 @@ if __name__ == '__main__':
     #AdjustReceipt().pass_batch_adjust('batch_adjust.json', 'login.json')
 
     #审批调整单-驳回
-    AdjustReceipt().fail_batch_adjust('batch_adjust.json', 'login.json')
+    #AdjustReceipt().fail_batch_adjust('batch_adjust.json', 'login.json')
 
     # 查询调整单
-    #AdjustReceipt().adjust_page('page_adjust.json', 'login.json')
+    AdjustReceipt().adjust_page('page_adjust.json', 'login.json')

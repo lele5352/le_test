@@ -13,3 +13,16 @@ test-26环境:https://test-26.popicorns.com
 数据库：
     10.0.0.163    app     123456
 
+
+10.24笔记：
+    1.如何给上条用例返回结果中某些信息用在后面的用例中？
+    三种解决办法：
+    (1)set up()：将前面一条用例在set up()方法中执行一遍
+    (2)全局变量：定义一个全局变量，在前一条用例执行后赋值给变量，后续用到的地方使用 global 定义全局变量获取值
+    (3)反射  在外部定义定义一个类
+    class GetData:
+        Cookie = None
+    然后使用setattr(GetData,'Cookie','xxxxx')在前一条用例执行时，给变量赋值
+    在第二条使用变量的地方使用getattr(GetData,'Cookie','xxxxx'),获取值
+    另外两个方法hasattr(),delattr()分别为判断是否存在变量和删除变量
+
