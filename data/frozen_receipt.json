@@ -1,11 +1,7 @@
 {
-    "url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",
     "frozenCount": "1",
     "frozenReason": 1,
-    "storageLocationId": 57,
-    "supplierId": 1435493872359837700,
-    "supplierName": null,
     "remark": "test-02",
     "storageLocationCode": "KW-SJQ-02",
-    "waresSkuCode": "71690438137A01",
+    "waresSkuCode": "71690438137A01"
 }

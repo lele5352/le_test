@@ -1,0 +1,12 @@
+{
+    "audit_pass": {
+        "auditResult": 1,
+        "ids": [45],
+        "rejectReason": "审批备注信息"
+    },
+    "audit_fail": {
+        "auditResult": 2,
+        "ids": [43],
+        "rejectReason": "审批备注信息"
+    }
+}

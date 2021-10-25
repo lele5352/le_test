@@ -1,0 +1,17 @@
+{
+  "frozen_receipt": {
+    "frozen_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",
+    "batch_defrost_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt/batchDefrost",
+    "page_frozen_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt/page"
+  },
+  "adjust_receipt": {
+    "adjust_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt",
+    "batch_adjust_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt/batchAudit",
+    "page_adjust_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/adjustReceipt/page"
+  },
+  "process_receipt": {
+    "process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt",
+    "batch_process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt/batchAudit",
+    "page_process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt/page"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "waresSkuCode":"",
+    "processReceiptCode":"",
+    "status":1,
+    "processType":"",
+    "sortField":[
+        {
+            "field":"create_time",
+            "type":"DESC"
+        }
+    ],
+    "size":10,
+    "current":1
+}

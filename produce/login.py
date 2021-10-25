@@ -1,5 +1,6 @@
 from tools.read_json import ReadJson
 from api.api_login import ApiLogin
+from data.get_data import GetAuthorization
 
 def get_data(filepath):
 
@@ -19,6 +20,9 @@ class Login(object):
         res = ApiLogin().api_post_login(url, username, password, grant_type)
         res_data = res.json()["data"]
         authorization = res_data["tokenHead"] + " " + res_data["token"]
+        #获取token后通过反射存储获取的token
+        setattr(GetAuthorization, "authorization", authorization)
+
         return authorization
 
 
