@@ -2,9 +2,11 @@ from tools.read_json import ReadJson
 from api.api_login import ApiLogin
 from data.get_data import GetAuthorization
 
+# def get_data(filepath):
+#
+#     return ReadJson(filepath).read_json()
 def get_data(filepath):
-
-    return ReadJson(filepath).read_json()
+    return ReadJson().read_json(filepath)
 
 class Login(object):
 

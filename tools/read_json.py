@@ -3,14 +3,19 @@ import json
 import os
 
 class ReadJson(object):
-    def __init__(self, filename):
-        #调试时候使用路径
-        self.filepath = "../data/" + filename
-        #跑脚本时使用
-        #self.filepath = "./data/" + filename
+    # def __init__(self, filename):
+    #     #调试时候使用路径
+    #     self.filepath = "../data/" + filename
+    #     #跑脚本时使用
+    #     #self.filepath = "./data/" + filename
 
-    def read_json(self):
-        with open(self.filepath, "r", encoding="utf-8") as f:
+    def read_json(self,filename):
+        #调试时候使用路径
+        filepath = "../data/" + filename
+        #跑脚本时使用
+        #filepath = "./data/" + filename
+
+        with open(filepath, "r", encoding="utf-8") as f:
             # 调用load方法加载文件流
             return json.load(f)
 

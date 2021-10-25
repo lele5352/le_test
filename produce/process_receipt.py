@@ -3,13 +3,13 @@ from produce.login import Login
 from api.api_ecStockoperation import ApiProcessReceipt
 
 def get_url(url_file):
-    return ReadJson(url_file).read_json()
+    return ReadJson().read_json(url_file)
 
 def get_authorization(token_file):
     return Login().get_authorization(token_file)
 
 def get_data(data_file):
-    return ReadJson(data_file).read_json()
+    return ReadJson().read_json(data_file)
 
 class ProcessReceipt(object):
 
