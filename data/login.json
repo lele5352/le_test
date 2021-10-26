@@ -1,18 +1,18 @@
 {
-  "login_001": {
-    "url": "https://test-26.popicorns.com/api/ec-ums-api/user/login",
-    "username": "02@1.com",
-    "password": "jhj8D0K//uifZ7VGyeyS3mJLAFGEEZR61FxmwQ7SJBLTyjljvTVFvZeIPU9acsJzusRjlAh3EVuBq/Zp0EublzvHby+i0xbIhWQBZ/jKnghdTGt105XL78SLbVhdJehCSek0BUSAm4J5B5MVmBdplyMzWfnmcoXvvTcudQz8cZ4=",
-    "grant_type": "password",
-    "expect_result": "操作成功",
-    "status_code": 200
-  },
-  "login_002": {
-    "url": "https://test-26.popicorns.com/api/ec-ums-api/user/login",
-    "username": "huang@popicorns.com",
-    "password": "CImhtz8iDJ/Rv0TTAmd0NdFxecYuiqrGZbiPX32nnnm4X8es4zyvzqJIwT9MTHpcH5I/jxkx7uJKHqgf0ZKc2NPvMUTvDpLc+9qbd2nbQxyPc/sSeT/HQIcc3FM2ipuALb3qBtj/hukhmsfMTvTmPcG3/tROw2TbtJ82ZhgVQtU=",
-    "grant_type": "password",
-    "expect_result": "账号密码错误!",
-    "status_code": 200
-  }
+    "login_001":{
+        "url":"https://test-26.popicorns.com/api/ec-ums-api/user/login",
+        "username":"02@1.com",
+        "password":"PdqR9UfCr3GYgf/QSugTZn00bR/oE13lGOCxC8kRZDar29JKJB3Tn2eXbLc8yJuh27r0dtawiIJdcugnsZjJxLkArevYSkp+BpVrgKwZUOgzodgok22gqw1zTRCKN7pAAYYhyJkzCgLgNmcVtwkFLwYx4E6im9N9PrcJ+K6tLGs=",
+        "grant_type":"password",
+        "expect_result":"操作成功",
+        "status_code":200
+    },
+    "login_002":{
+        "url":"https://test-26.popicorns.com/api/ec-ums-api/user/login",
+        "username":"huang@popicorns.com",
+        "password":"CImhtz8iDJ/Rv0TTAmd0NdFxecYuiqrGZbiPX32nnnm4X8es4zyvzqJIwT9MTHpcH5I/jxkx7uJKHqgf0ZKc2NPvMUTvDpLc+9qbd2nbQxyPc/sSeT/HQIcc3FM2ipuALb3qBtj/hukhmsfMTvTmPcG3/tROw2TbtJ82ZhgVQtU=",
+        "grant_type":"password",
+        "expect_result":"账号密码错误!",
+        "status_code":200
+    }
 }

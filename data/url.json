@@ -1,4 +1,7 @@
 {
+  "login": {
+    "login_url": "https://test-26.popicorns.com/api/ec-ums-api/user/login"
+  },
   "frozen_receipt": {
     "frozen_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",
     "batch_defrost_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt/batchDefrost",
@@ -13,5 +16,11 @@
     "process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt",
     "batch_process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt/batchAudit",
     "page_process_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/processReceipt/page"
+  },
+  "pda_inner_location": {
+    "batch_move": "https://test-26.popicorns.com/api/ec-stockoperation-api/innerLocation/pda/batchMoveInventory",
+    "single_move": "https://test-26.popicorns.com/api/ec-stockoperation-api/innerLocation/pda/moveInventory",
+    "to_bad": "https://test-26.popicorns.com/api/ec-stockoperation-api/innerLocation/pda/moveToBadLocation",
+    "to_good": "https://test-26.popicorns.com/api/ec-stockoperation-api/innerLocation/pda/moveToGoodLocation"
   }
 }
