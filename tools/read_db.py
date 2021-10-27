@@ -20,7 +20,7 @@ class ReadDB(object):
             self.conn = pymysql.connect(host="127.0.0.1",
                         user="root",
                         passwd="123456",
-                        db="sakila",
+                        db="mysql",
                         charset='utf8')
             return self.conn
 
@@ -69,5 +69,5 @@ class ReadDB(object):
         return data
 
 if __name__ == '__main__':
-    sql = "select * from actor"
-    ReadDB().get_sql_many(sql, 5)
+    sql = "select * from user "
+    ReadDB().get_sql_many(sql, 2)

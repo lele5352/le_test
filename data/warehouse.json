@@ -1,0 +1,86 @@
+[
+	{
+		"id": 661,
+		"abbreviation": "lele-zhifa",
+		"warehouseId": 11,
+		"warehouseName": "乐乐直发",
+		"warehouseCode": "lele-zhifa"
+	},
+	{
+		"id": 655,
+		"abbreviation": "FS01-BH",
+		"warehouseId": 4,
+		"warehouseName": "佛山1号备货仓",
+		"warehouseCode": "FS01-BH"
+	},
+	{
+		"id": 662,
+		"abbreviation": "lele-fahuo",
+		"warehouseId": 13,
+		"warehouseName": "乐乐-发货乐乐-发货乐乐-发货乐乐-发货",
+		"warehouseCode": "lele-fahuo"
+	},
+	{
+		"id": 657,
+		"abbreviation": "GZ01",
+		"warehouseId": 6,
+		"warehouseName": "广州1号仓",
+		"warehouseCode": "GZ01"
+	},
+	{
+		"id": 659,
+		"abbreviation": "test002",
+		"warehouseId": 8,
+		"warehouseName": "雪菲直发",
+		"warehouseCode": "test002"
+	},
+	{
+		"id": 652,
+		"abbreviation": "lele-zhongzhuan",
+		"warehouseId": 10,
+		"warehouseName": "乐乐中转",
+		"warehouseCode": "lele-zhongzhuan"
+	},
+	{
+		"id": 654,
+		"abbreviation": "NJ01",
+		"warehouseId": 3,
+		"warehouseName": "新泽西1号仓",
+		"warehouseCode": "NJ01"
+	},
+	{
+		"id": 663,
+		"abbreviation": "lele-BH",
+		"warehouseId": 12,
+		"warehouseName": "乐乐备货",
+		"warehouseCode": "lele-BH"
+	},
+	{
+		"id": 656,
+		"abbreviation": "FS01-ZZ",
+		"warehouseId": 5,
+		"warehouseName": "佛山1号中转仓",
+		"warehouseCode": "FS01-ZZ"
+	},
+	{
+		"id": 658,
+		"abbreviation": "test001",
+		"warehouseId": 7,
+		"warehouseName": "雪菲中转",
+		"warehouseCode": "test001"
+	},
+	{
+		"id": 660,
+		"abbreviation": "LI-FHCK001",
+		"warehouseId": 9,
+		"warehouseName": "LI-发货仓库001",
+		"warehouseCode": "LI-FHCK001"
+	},
+	{
+		"id": 653,
+		"abbreviation": "LA01",
+		"warehouseId": 2,
+		"warehouseName": "洛杉矶1号仓",
+		"warehouseCode": "LA01"
+	}
+]

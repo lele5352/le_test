@@ -11,3 +11,6 @@ class ApiLogin(object):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8'}
         #调用并返回响应对象
         return requests.post(url, headers=headers, json=datas)
+    def api_get_warehouse_list(self, url, authorization):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
+        return requests.get(url, headers=headers)

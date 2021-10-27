@@ -3,17 +3,27 @@ import datetime
 import time
 
 import fake_useragent
+import random
 import requests
 import simplejson as json
 from bs4 import BeautifulSoup
 
-def get_fake_ua():
-    location = './fake_useragent_0.1.11.json'
-    ua = fake_useragent.UserAgent(path=location)
-
+def get_headers():
+    #location = './fake_useragent_0.1.11.json'
+    ua_lsit = [
+            "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36"
+        ]
+    ua = random.choice(ua_lsit)
     headers = {
-        'user-agent': ua.random
+        'user-agent': ua
     }
+
     return headers
 
 def get_week_day(date):
@@ -27,11 +37,14 @@ def get_week_day(date):
         6: '星期天',
     }
     day = date.weekday()
-    return "今天日期为：" + str(datetime.date.today()) + ' ' + week_day_dict[day]
+    res = "今天日期为：" + str(datetime.date.today()) + ' ' + week_day_dict[day]
+    return res
+
 
 def get_weather():
     url = "https://d1.weather.com.cn/sk_2d/101010100.html?_=1618886817920"
-    r_url = requests.get(url, headers=get_fake_ua())
+    r_url = requests.get(url, headers=get_headers())
+    print(r_url.json())
     message = json.loads(r_url.text.encode("latin1").decode("utf8").replace("var dataSK = ", ""))
     cityname = message['cityname']
     aqi = int(message['aqi'])
@@ -54,6 +67,7 @@ def get_weather():
         airQuality = "严重污染"
     return cityname + " " + '今日天气：' + weather + ' 温度：' + temp + ' 摄氏度 ' + wd + ws + ' 相对湿度：' + sd + \
         ' 空气质量：' + str(aqi) + "（" + airQuality + "）"
+get_weather()
 
 def get_top_list():
     requests_page = requests.get('http://top.baidu.com/buzz?b=1&c=513&fr=topbuzz_b42_c513')
@@ -70,7 +84,7 @@ def get_top_list():
 
 def get_daily_sentence():
     url = "http://open.iciba.com/dsapi/"
-    r = requests.get(url, headers=get_fake_ua())
+    r = requests.get(url, headers=get_headers())
     r = json.loads(r.text)
     content = r["content"]
     note = r["note"]
@@ -94,7 +108,7 @@ def get_sendContent():
     return sendContent
 
 def send(content):
-    url = "" #填写你自己的机器人配置链接
+    url = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=2c0ee031-c1a7-4217-a532-99ec013e436c" #填写你自己的机器人配置链接
     headers = {"Content-Type": "text/plain"}
     data = {
         "msgtype": "markdown",
@@ -108,4 +122,4 @@ def send(content):
     else:
         return "发送失败" + requests_url.text
 
-print(send(get_sendContent()))
+

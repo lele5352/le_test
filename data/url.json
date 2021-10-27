@@ -1,6 +1,8 @@
 {
   "login": {
-    "login_url": "https://test-26.popicorns.com/api/ec-ums-api/user/login"
+    "login_url": "https://test-26.popicorns.com/api/ec-ums-api/user/login",
+    "list_warehouse_url": "https://test-26.popicorns.com/api/ec-wms-api/data/permission/user/list?t=",
+    "switch_url": "https://test-26.popicorns.com/api/ec-wms-api/data/permission/switchdefault"
   },
   "frozen_receipt": {
     "frozen_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",
