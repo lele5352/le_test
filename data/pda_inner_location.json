@@ -1,0 +1,50 @@
+{
+    "batch_move":{
+        "desLocationCode":"KW-SJQ-04",
+        "inventoryList":[
+            {
+                "count":2,
+                "quality":"良品",
+                "skuCode":"73781610434A01"
+            },
+            {
+                "count":4,
+                "quality":"良品",
+                "skuCode":"73781610434A02"
+            }
+        ],
+        "originLocationCode":"KW-SJQ-03"
+    },
+
+
+    "single_move":{
+        "desLocationCode":"KW-SJQ-04",
+        "inventory":{
+            "count":4,
+            "quality":"良品",
+            "skuCode":"73781610434A02"
+        },
+        "originLocationCode":"KW-SJQ-03"
+    },
+
+    "to_bad":{
+        "desLocationCode":"KW-CPQ-03",
+        "inventory":{
+            "count":1,
+            "quality":"良品",
+            "skuCode":"73781610434A02"
+        },
+        "originLocationCode":"KW-SJQ-03"
+    },
+
+
+    "to_good":{
+        "desLocationCode":"KW-SJQ-03",
+        "inventory":{
+            "count":1,
+            "quality":"次品",
+            "skuCode":"73781610434A02"
+        },
+        "originLocationCode":"KW-CPQ-03"
+    }
+}

@@ -1,5 +1,5 @@
-from tools.read_json import ReadJson
-from tools.read_json import GetData
+from tools.read_ever import ReadJson
+from tools.read_ever import GetData
 from api.api_login import ApiLogin
 from data.get_data import GetAuthorization
 import json

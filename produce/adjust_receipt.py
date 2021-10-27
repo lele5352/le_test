@@ -1,4 +1,4 @@
-from tools.read_json import GetData
+from tools.read_ever import GetData
 from api.api_ecStockoperation import ApiAdjustReceipt
 
 class AdjustReceipt(object):
