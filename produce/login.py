@@ -1,11 +1,7 @@
 from tools.read_ever import GetData
 from api.api_login import ApiLogin
 import json
-import time
 
-
-# def get_data(filepath):
-#     return ReadJson().read_json(filepath)
 
 class Login(object):
 
@@ -51,16 +47,20 @@ class Login(object):
             json.dump(list_warehouse_info, f, indent="\t", ensure_ascii=False)
             print("写入仓库信息json文件成功")
 
-    def switch_warehouse(self,url_file,token_file, warehouse_code):
-        url = GetData().get_url(url_file)["login"]["list_warehouse_url"]
+    def switch_warehouse(self, url_file, token_file, warehouse_code):
+        url = GetData().get_url(url_file)["login"]["switch_url"]
         authorization = GetData().get_data(token_file)["authorization"]
         info = GetData().get_data("warehouse.json")
-        id =
+        for code in info:
+            if code.get("warehouseCode") == warehouse_code:
+                id = code.get("id")
         datas = {
-            dataPermId: id
+            "dataPermId": id
         }
+        res = ApiLogin().api_put_switch_warehouse(url, authorization, datas)
+        print("切换结果：", res.json().get("message"))
 
 if __name__ == '__main__':
     #Login().get_authorization("url.json", "config.json")
-    # Login().get_warehouse_info("url.json", "config.json", "warehouse.json")
-    info = GetData().get_data("")
+    #Login().get_warehouse_info("url.json", "config.json", "warehouse.json")
+    Login().switch_warehouse("url.json", "config.json", "lele-zhifa")

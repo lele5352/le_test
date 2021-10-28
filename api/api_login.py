@@ -3,6 +3,7 @@
 """
 #导包
 import requests
+import json
 #新建类 登录接口对象
 class ApiLogin(object):
 #新建方法 登录方法
@@ -14,3 +15,7 @@ class ApiLogin(object):
     def api_get_warehouse_list(self, url, authorization):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
         return requests.get(url, headers=headers)
+
+    def api_put_switch_warehouse(self, url, authorization, datas):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
+        return requests.put(url, headers=headers, data=json.dumps(datas))
