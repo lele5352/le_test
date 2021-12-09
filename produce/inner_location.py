@@ -37,10 +37,10 @@ class InnerLocation(object):
 if __name__ == '__main__':
 
     #批量移库
-    #InnerLocation().batch_move('url.json', 'config.json', 'pda_inner_location.json')
+    InnerLocation().batch_move('url.json', 'config.json', 'pda_inner_location.json')
 
-    #逐渐移库
-    InnerLocation().single_move('url.json', 'config.json', 'pda_inner_location.json')
+    #逐件移库
+    #InnerLocation().single_move('url.json', 'config.json', 'pda_inner_location.json')
 
     #转次
     #InnerLocation().move_to_bad_location('url.json', 'config.json', 'pda_inner_location.json')

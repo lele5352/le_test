@@ -63,4 +63,4 @@ class Login(object):
 if __name__ == '__main__':
     #Login().get_authorization("url.json", "config.json")
     #Login().get_warehouse_info("url.json", "config.json", "warehouse.json")
-    Login().switch_warehouse("url.json", "config.json", "lele-zhifa")
+    Login().switch_warehouse("url.json", "config.json", "lele-fahuo")
