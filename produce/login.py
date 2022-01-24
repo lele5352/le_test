@@ -7,7 +7,6 @@ class Login(object):
 
     # 获取token
     def get_authorization(self, url_file, data_file):
-
         url = GetData().get_data(url_file)["login"]["login_url"]
         datas = GetData().get_data(data_file)
         res = ApiLogin().api_post_login(url, datas)
@@ -23,14 +22,15 @@ class Login(object):
             res["authorization"] = authorization
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(res, f, indent="    ", ensure_ascii=False)  # indent设置写入json文件的缩进格式 , indent="\t"
-            print("生成authorization成功！")
+            print("获取最新authorization成功！")
 
 
     def get_warehouse_info(self, url_file, token_file, warehouse_file):
 
         url = GetData().get_url(url_file)["login"]["list_warehouse_url"]
         authorization = GetData().get_data(token_file)["authorization"]
-        res = ApiLogin().api_get_warehouse_list(url, authorization)
+        datas = {"warehouseStatus":0,"sortField":[{"field":"create_time","type":"DESC"}],"operatingMode":'',"warehouseCode":'',"warehouseAbbreviation":'',"warehouseNameEn":'',"warehouseNameCn":'',"cnWarehouseFlag":'',"size":50,"current":2}
+        res = ApiLogin().api_get_warehouse_list(url, authorization,datas)
         res = (res.json()["data"])
         list_warehouse_info = []
         for item in res:
@@ -50,17 +50,16 @@ class Login(object):
     def switch_warehouse(self, url_file, token_file, warehouse_code):
         url = GetData().get_url(url_file)["login"]["switch_url"]
         authorization = GetData().get_data(token_file)["authorization"]
-        info = GetData().get_data("warehouse.json")
-        for code in info:
-            if code.get("warehouseCode") == warehouse_code:
-                id = code.get("id")
+        warehouse_info = GetData().get_wareshouse_info(warehouse_code)
         datas = {
-            "dataPermId": id
+            "dataPermId": warehouse_info.get("warehouseId")
         }
         res = ApiLogin().api_put_switch_warehouse(url, authorization, datas)
-        print("切换结果：", res.json().get("message"))
+        print(res.json().get("message"),"切换仓库结果：", warehouse_code)
+        return warehouse_info
 
 if __name__ == '__main__':
-    #Login().get_authorization("url.json", "config.json")
-    #Login().get_warehouse_info("url.json", "config.json", "warehouse.json")
-    Login().switch_warehouse("url.json", "config.json", "lele-fahuo")
+    Login().get_authorization("url.json", "config.json")
+    # Login().get_warehouse_info("url.json", "config.json", "warehouse.json")
+    res = Login().switch_warehouse("url.json", "config.json", "FSZZ")
+    print(res)

@@ -28,8 +28,24 @@ class GetData(object):
     def get_data(self, data_file):
         return ReadJson().read_json(data_file)
 
-    def get_authorization(self, token_file):
-        return ReadJson().read_json(token_file)
+    def get_authorization(self, data_file):
+        filepath = '../data/' + data_file
+        with open(filepath, 'r', encoding='utf-8') as f:
+            res = json.load(f)
+            authorization = res["authorization"]
+        return authorization
+
+    def get_wareshouse_info(self, wareshouse_code):
+        info = GetData().get_data("warehouse.json")
+        for i in info:
+            if i.get("warehouseCode") == wareshouse_code:
+                warehouse_info = {
+                    "warehouseId": i.get("warehouseId"),
+                    "warehouseCode": i.get("warehouseCode"),
+                    "warehouseName": i.get("warehouseName")
+                }
+        return warehouse_info
+
 
 
 
@@ -45,5 +61,5 @@ if __name__ == "__main__":
     #                  data.get('status_code')
     #                  ))
     # print(arrs)
-    data = ReadJson("frozen_receipt.json").read_json()
+    data = GetData().get_wareshouse_info('FSBH')
     print(data)

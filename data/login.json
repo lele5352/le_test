@@ -1,8 +1,8 @@
 {
     "login_001":{
-        "url":"https://test-26.popicorns.com/api/ec-ums-api/user/login",
-        "username":"02@1.com",
-        "password":"PdqR9UfCr3GYgf/QSugTZn00bR/oE13lGOCxC8kRZDar29JKJB3Tn2eXbLc8yJuh27r0dtawiIJdcugnsZjJxLkArevYSkp+BpVrgKwZUOgzodgok22gqw1zTRCKN7pAAYYhyJkzCgLgNmcVtwkFLwYx4E6im9N9PrcJ+K6tLGs=",
+        "url":"https://test-scms.popicorns.com/api/ec-ums-api/user/login",
+        "username":"huanglele@popicorns.com",
+        "password":"mGsYRoC/EiPnWJVVb/3Et0MAk+p/aSQ9laZA7pJa3GGXGasn2FuLMlZdjtXxC7LX9/abaKcFp848eTkC42hrYGewA/IbQDatMdQWi5aWj8LdIoA+CLOEdizCVsOvOKV8zF06ogBfoxyjE2/W1cyYPBJpgu3Fb+WGBnsD3zvfBFE=",
         "grant_type":"password",
         "expect_result":"操作成功",
         "status_code":200

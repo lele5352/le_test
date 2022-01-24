@@ -1,4 +1,5 @@
 import pymysql
+import time
 """
     目标：完成数据库相关工具类封装
     分析：
@@ -13,20 +14,47 @@ import pymysql
 
 class ReadDB(object):
     conn = None
-
+    def __init__(self,table):
+        self.table = table
     #获取链接对象方法
     def get_conn(self):
-        if self.conn is None:
-            self.conn = pymysql.connect(host="127.0.0.1",
-                        user="root",
-                        passwd="123456",
-                        db="mysql",
-                        charset='utf8')
-            return self.conn
+        if self.table == 'wms':
+            if self.conn is None:
+                """
+                self.conn = pymysql.connect(host="127.0.0.1",
+                            user="root",
+                            passwd="123456",
+                            db="mysql",
+                            charset='utf8')
+                """
+                self.conn = pymysql.connect(host="10.0.0.127",
+                                            port=3306,
+                                            user="erp",
+                                            passwd="sd)*(YSHDG;l)D_FKds:D#&y}",
+                                            db="supply_wms",
+                                            charset='utf8')
+                return self.conn
+        elif self.table == 'ims':
+            if self.conn is None:
+                """
+                self.conn = pymysql.connect(host="127.0.0.1",
+                            user="root",
+                            passwd="123456",
+                            db="mysql",
+                            charset='utf8')
+                """
+                self.conn = pymysql.connect(host="10.0.0.127",
+                                            port=3306,
+                                            user="erp",
+                                            passwd="sd)*(YSHDG;l)D_FKds:D#&y}",
+                                            db="supply_ims",
+                                            charset='utf8')
+                return self.conn
 
     #获取游标对象方法
     def get_cursor(self):
         return self.get_conn().cursor()
+
 
     #关闭游标对象方法
     def close_cursor(self, cursor):
@@ -47,7 +75,6 @@ class ReadDB(object):
         data = cursor.fetchone()
         self.close_cursor(cursor)
         self.close_conn()
-        print(data)
         return data
 
     def get_sql_many(self, sql, num):
@@ -56,7 +83,6 @@ class ReadDB(object):
         data = cursor.fetchmany(size=num)
         self.close_cursor(cursor)
         self.close_conn()
-        print(data)
         return data
 
     def get_sql_all(self, sql):
@@ -65,9 +91,31 @@ class ReadDB(object):
         data = cursor.fetchall()
         self.close_cursor(cursor)
         self.close_conn()
-        print(data)
         return data
 
+    def execute(self,sql):
+
+        db = self.get_conn()
+
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+
+        # SQL 删除语句
+        try:
+            # 执行SQL语句
+            cursor.execute(sql)
+            # 提交修改
+            db.commit()
+        except:
+            # 发生错误时回滚
+            db.rollback()
+
+        # 关闭连接
+        db.close()
+        print('删除操作成功')
+
 if __name__ == '__main__':
-    sql = "select * from user "
-    ReadDB().get_sql_many(sql, 2)
+    sql = "select * from central_inventory where goods_sku_code = '53586714577' and  warehouse_id = 536;"
+    sql_1 = "delete from central_inventory where goods_sku_code = '53586714577' and warehouse_id =536;"
+    ReadDB().execute(sql_1)
+    ReadDB().get_sql_one(sql)
