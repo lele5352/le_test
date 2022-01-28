@@ -7,8 +7,8 @@
 		"warehouseCode": "CNFS03-ZZ"
 	},
 	{
-		"id": 1302,
-		"abbreviation": "LA01",
+		"id": 1349,
+		"abbreviation": "LA01111LA01111LA0",
 		"warehouseId": 517,
 		"warehouseName": "洛杉矶1号仓-a",
 		"warehouseCode": "LA01"
@@ -28,14 +28,14 @@
 		"warehouseCode": "ZY-FOR"
 	},
 	{
-		"id": 1344,
+		"id": 1360,
 		"abbreviation": "LELE-ZF",
 		"warehouseId": 563,
 		"warehouseName": "乐乐直发",
 		"warehouseCode": "LELE-ZF"
 	},
 	{
-		"id": 1307,
+		"id": 1352,
 		"abbreviation": "ESBH",
 		"warehouseId": 512,
 		"warehouseName": "艾森备货仓",
@@ -49,7 +49,7 @@
 		"warehouseCode": "USNJ01"
 	},
 	{
-		"id": 1335,
+		"id": 1399,
 		"abbreviation": "ZY-FOR-DEP",
 		"warehouseId": 525,
 		"warehouseName": "ZY-FORyicang",
@@ -63,14 +63,14 @@
 		"warehouseCode": "KWDR-TEST"
 	},
 	{
-		"id": 1323,
+		"id": 1363,
 		"abbreviation": "GZZF",
 		"warehouseId": 520,
 		"warehouseName": "广州直发仓",
 		"warehouseCode": "GZZF"
 	},
 	{
-		"id": 1310,
+		"id": 1353,
 		"abbreviation": "LI-FHCBM-FHCBM-FHCBM",
 		"warehouseId": 560,
 		"warehouseName": "广州发货仓发货仓-发货仓发货仓-发货仓发货仓-发货仓发货仓1",
@@ -84,14 +84,14 @@
 		"warehouseCode": "CNFS02-ZZ"
 	},
 	{
-		"id": 1329,
+		"id": 1393,
 		"abbreviation": "CNGZ01-ZZ",
 		"warehouseId": 524,
 		"warehouseName": "CNGZ01-ZZyicang",
 		"warehouseCode": "CNGZ01-ZZ"
 	},
 	{
-		"id": 1333,
+		"id": 1362,
 		"abbreviation": "ESZF",
 		"warehouseId": 514,
 		"warehouseName": "艾森直发仓",
@@ -105,21 +105,21 @@
 		"warehouseCode": "USLA01"
 	},
 	{
-		"id": 1316,
+		"id": 1357,
 		"abbreviation": "FS01-ZZ",
 		"warehouseId": 519,
 		"warehouseName": "佛山1号中转仓-a",
 		"warehouseCode": "FS01-ZZ"
 	},
 	{
-		"id": 1324,
+		"id": 1388,
 		"abbreviation": "LI-BHC01",
 		"warehouseId": 509,
 		"warehouseName": "LI-备货仓01",
 		"warehouseCode": "LI-BHC01"
 	},
 	{
-		"id": 1303,
+		"id": 1366,
 		"abbreviation": "FR01-a",
 		"warehouseId": 522,
 		"warehouseName": "法国1号仓-b",
@@ -133,7 +133,14 @@
 		"warehouseCode": "UKBH02"
 	},
 	{
-		"id": 1319,
+		"id": 1354,
+		"abbreviation": "SUIBIAN99999",
+		"warehouseId": 562,
+		"warehouseName": "随便发货仓",
+		"warehouseCode": "SUIBIAN99999"
+	},
+	{
+		"id": 1382,
 		"abbreviation": "LI-FHC01",
 		"warehouseId": 508,
 		"warehouseName": "LI-发货仓01",
@@ -147,7 +154,7 @@
 		"warehouseCode": "USAT01"
 	},
 	{
-		"id": 1317,
+		"id": 1380,
 		"abbreviation": "BH01",
 		"warehouseId": 521,
 		"warehouseName": "英国1号仓-a",
@@ -161,7 +168,7 @@
 		"warehouseCode": "USLA02"
 	},
 	{
-		"id": 1332,
+		"id": 1361,
 		"abbreviation": "FSZZ",
 		"warehouseId": 516,
 		"warehouseName": "佛山中转",
@@ -182,21 +189,21 @@
 		"warehouseCode": "CNFS03-BH"
 	},
 	{
-		"id": 1318,
+		"id": 1358,
 		"abbreviation": "ESZZ",
 		"warehouseId": 511,
 		"warehouseName": "艾森中转仓",
 		"warehouseCode": "ESZZ"
 	},
 	{
-		"id": 1322,
+		"id": 1386,
 		"abbreviation": "LI-ZZC01",
 		"warehouseId": 510,
 		"warehouseName": "LI-中转仓",
 		"warehouseCode": "LI-ZZC01"
 	},
 	{
-		"id": 1334,
+		"id": 1364,
 		"abbreviation": "FSBH",
 		"warehouseId": 515,
 		"warehouseName": "佛山备货",
@@ -217,7 +224,7 @@
 		"warehouseCode": "CNFS02-BH"
 	},
 	{
-		"id": 1315,
+		"id": 1356,
 		"abbreviation": "NJ0-a",
 		"warehouseId": 518,
 		"warehouseName": "新泽西1号仓-a",
@@ -231,21 +238,21 @@
 		"warehouseCode": "FS04-BH"
 	},
 	{
-		"id": 1304,
+		"id": 1350,
 		"abbreviation": "TY01",
 		"warehouseId": 523,
 		"warehouseName": "停用仓库停用仓库停用仓库停用仓库停用仓库停用仓库停用仓库",
 		"warehouseCode": "TY01"
 	},
 	{
-		"id": 1338,
+		"id": 1351,
 		"abbreviation": "LELE-BH",
 		"warehouseId": 564,
 		"warehouseName": "乐乐备货",
 		"warehouseCode": "LELE-BH"
 	},
 	{
-		"id": 1328,
+		"id": 1359,
 		"abbreviation": "ESFH",
 		"warehouseId": 513,
 		"warehouseName": "艾森发货仓",

@@ -19,6 +19,10 @@ class ApiLogin(object):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
         return requests.get(url, headers=headers, json=datas)
 
+    def api_search_warehouse(self, url, authorization,datas):
+        headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
+        return requests.post(url, headers=headers, json=datas)
+
     def api_put_switch_warehouse(self, url, authorization, datas):
         headers = {'Content-Type': 'application/json', 'charset': 'UTF-8', "authorization": authorization}
         return requests.put(url, headers=headers, data=json.dumps(datas))

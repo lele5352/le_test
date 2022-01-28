@@ -8,7 +8,7 @@ class GetWarehouse():
 
     def switch_warehouse(self, warehouse_code):
         login.Login().get_authorization("url.json", "config.json")
-        warehouse_info = login.Login().switch_warehouse("url.json", "config.json", warehouse_code)
+        warehouse_info = login.Login().switch_warehouse("url.json", "config.json", "warehouse.json", warehouse_code)
         return warehouse_info
 
 
@@ -135,26 +135,26 @@ class Transfer:
         print(res.json().get('message'))
 
     #其他入库-上架
-    def other_upper(self):
+    def other_upper(self, location_code):
         url_other_upper = 'https://test-scms.popicorns.com/api/ec-wms-api/entryorder/putOnTheShelf'
         data_upper = {
                         "entryOrderId": self.entryorderid,
                         "skuList": [
                             {
                                 "skuCode": "53586714577B02",
-                                "shelvesLocationCode": "KW-SJQ-01",
+                                "shelvesLocationCode": location_code,
                                 "skuQty": "10",
                                 "abnormalQty": 0
                             },
                             {
                                 "skuCode": "53586714577B01",
-                                "shelvesLocationCode": "KW-SJQ-01",
+                                "shelvesLocationCode": location_code,
                                 "skuQty": "5",
                                 "abnormalQty": 0
                             },
                             {
                                 "skuCode": "53586714577D01",
-                                "shelvesLocationCode": "KW-SJQ-01",
+                                "shelvesLocationCode": location_code,
                                 "skuQty": "10",
                                 "abnormalQty": 0
                             }
@@ -195,9 +195,9 @@ class Transfer:
             read_db.ReadDB('wms').execute(i)
 
     #添加库存
-    def add_wares(self):
+    def add_wares(self, location_code):
         self.other_add()
-        self.other_upper()
+        self.other_upper(location_code)
 
     #获取仓库信息
     def get_warehouse_info(self, wareshouse_code):
@@ -205,13 +205,16 @@ class Transfer:
         return warehouse_info
 
     #创建调拨需求-备货
-    def add_demand(self, delivery_warehouse_code, receive_warehouse_code, sku_code, qty, num):
+    def add_demand(self, type, delivery_warehouse_code, delivery_target_warehouse_code, receive_warehouse_code, receive_target_warehouse_code, sku_code, qty, num):
         url_add_demand = 'https://test-scms.popicorns.com/api/ec-oms-api/demand/create'
 
         delivery_warehouse_info = self.get_warehouse_info(delivery_warehouse_code)
         receive_warehouse_info = self.get_warehouse_info(receive_warehouse_code)
+        receive_target_warehouse_info = self.get_warehouse_info(receive_target_warehouse_code)
+        delivery_target_warehouse_info = self.get_warehouse_info(delivery_target_warehouse_code)
 
-        data_demand = {
+        data_demand = [
+            {
                             "deliveryWarehouseId": delivery_warehouse_info.get("warehouseId"),
                             "deliveryWarehouseName": delivery_warehouse_info.get("warehouseName"),
                             "deliveryWarehouseCode": delivery_warehouse_info.get("warehouseCode"),
@@ -227,10 +230,35 @@ class Transfer:
                                     "itemPicture": "https://img.popicorns.com/dev/file/2021/11/08/8cbba5e1160a48e9bd9b43e54450ab7c.jpg"
                                 }
                             ]
+                        },
+            {
+                          "deliveryWarehouseId": delivery_warehouse_info.get("warehouseId"),
+                          "deliveryWarehouseName": delivery_warehouse_info.get("warehouseName"),
+                          "deliveryWarehouseCode": delivery_warehouse_info.get("warehouseCode"),
+                          "deliveryTargetWarehouseId": delivery_target_warehouse_info.get("warehouseId"),
+                          "deliveryTargetWarehouseName": delivery_target_warehouse_info.get("warehouseName"),
+                          "deliveryTargetWarehouseCode": delivery_target_warehouse_info.get("warehouseCode"),
+                          "receiveWarehouseId": receive_warehouse_info.get("warehouseId"),
+                          "receiveWarehouseName": receive_warehouse_info.get("warehouseName"),
+                          "receiveWarehouseCode": receive_warehouse_info.get("warehouseCode"),
+                          "receiveTargetWarehouseName": receive_target_warehouse_info.get("warehouseName"),
+                          "receiveTargetWarehouseCode": receive_target_warehouse_info.get("warehouseCode"),
+                          "receiveTargetWarehouseId": receive_target_warehouse_info.get("warehouseId"),
+                          "remark": "",
+                          "details": [
+                            {
+                              "itemSkuCode": sku_code,
+                              "itemSkuType": 1,
+                              "quantity": qty,
+                              "itemPicture": "https://img.popicorns.com/dev/file/2021/11/08/8cbba5e1160a48e9bd9b43e54450ab7c.jpg"
+                            }
+                          ]
                         }
+        ]
+
         time.sleep(1)
         for i in range(num):
-            res = requests.post(url_add_demand, headers=self.headers, data=json.dumps(data_demand))
+            res = requests.post(url_add_demand, headers=self.headers, data=json.dumps(data_demand[type]))
             print('备货需求{0}新增:'.format(i) + res.json().get('message'))
 
     #查询调拨需求
@@ -268,6 +296,7 @@ class Transfer:
                 "id": i.get("id"),
                 "demandCode": i.get("demandCode")
             })
+        print(demands_list)
         return demands_list
 
     #取消调拨需求
@@ -298,7 +327,7 @@ class Transfer:
                                       "pickOrderNo": "",
                                       "createUsername": "",
                                       "pickingUser": "",
-                                      "state": 0,
+                                      "state": "",
                                       "pickType": "",
                                       "distributeStatus": "",
                                       "type": "",
@@ -328,6 +357,7 @@ class Transfer:
     #分配拣货人
     def assign_picker(self):
         info = self.search_pick_order()
+        print(info[0])
         pick_order_no = info[0].get("pickOrderNo")
         url_assign_picker = 'https://test-scms.popicorns.com/api/ec-wms-api/transferOut/picking/assignPickUser'
         data_assign_picker = {"pickOrderNos": [pick_order_no], "pickUsername": "黄乐乐", "pickUserId": "10"}
@@ -351,50 +381,289 @@ class Transfer:
         pick_order_no = info[0].get("pickOrderNo")
         picking_detail = self.picking_detail()
         url_do_picking = "https://test-scms.popicorns.com/api/ec-wms-api/transferOut/picking/doPicking"
-        data_submit_tray_info = {
-                                    "pickOrderNo": pick_order_no,
-                                    "details": picking_detail.get("details")
-                                }
-        print(data_submit_tray_info)
-        res = requests.post(url_do_picking, headers=self.headers, data=json.dumps(data_submit_tray_info))
+        data_pickung = {
+                            "pickOrderNo": pick_order_no,
+                            "details": picking_detail.get("details")
+                        }
+        x = 0
+        for item in data_pickung["details"]:
+            item.update(realPickQty=data_pickung["details"][x]["shouldPickQty"])
+            x += 1
+        res = requests.post(url_do_picking, headers=self.headers, data=json.dumps(data_pickung))
         print("确认拣货：", res.json().get("message"))
 
-    # 按需装托
-    def submit_tray_info(self):
-        pass
+    #PDA-拉取拣货单详情页
+    def pda_picking_detail(self):
+        info = self.search_pick_order()
+        pick_order_no = info[0].get("pickOrderNo")
+        url_pda_picking_detail = "https://test160.popicorns.com/api/ec-wms-api/transferOut/picking/demand/detail?pickOrderNo={0}".format(pick_order_no)
+        res = requests.get(url_pda_picking_detail, headers=self.headers)
+        picking_detail = res.json().get("data")
+        return picking_detail
+
+    # PDA-按需装托
+    def submit_tray_info(self, location_code_tp):
+        info = self.pda_picking_detail()
+        url_submit_tray_info = "https://test160.popicorns.com/api/ec-wms-api/transferOut/pda/submitTrayInfo"
+        datas_submit_tray = [{
+                                "storageLocationCode": location_code_tp,
+                                "pickOrderNo": info["pickOrderNo"],
+                                "trayInfos": [{
+                                    "id": info["details"][0]["id"],
+                                    "waresSkuCode": "53586714577D01",
+                                    "waresSkuName": "单品2个组成1个销售sku 1/1 X2",
+                                    "goodsSkuCode": "53586714577",
+                                    "goodsSkuName": "决明子",
+                                    "skuQty": 10
+                                }, {
+                                    "id": info["details"][1]["id"],
+                                    "waresSkuCode": "53586714577B01",
+                                    "waresSkuName": "部件1 1/2 X1",
+                                    "goodsSkuCode": "53586714577",
+                                    "goodsSkuName": "决明子",
+                                    "skuQty": 5
+                                }, {
+                                    "id": info["details"][2]["id"],
+                                    "waresSkuCode": "53586714577B02",
+                                    "waresSkuName": "部件2 2/2 X2",
+                                    "goodsSkuCode": "53586714577",
+                                    "goodsSkuName": "决明子",
+                                    "skuQty": 10
+                                }]
+                            }]
+        res = requests.post(url_submit_tray_info, headers=self.headers, data=json.dumps(datas_submit_tray))
+        print("按需装托:", res.json().get("message"))
+
+    # PDA-创建出库单
+    def finish_picking(self, location_code_tp):
+        info = self.search_pick_order()
+        pick_order_no = info[0].get("pickOrderNo")
+        url_finish_picking = "https://test160.popicorns.com/api/ec-wms-api/transferOut/pda/finishPacking"
+        datas_finish_picking = {
+                                "pickOrderNo": pick_order_no,
+                                "storageLocationCodes": [location_code_tp]
+                            }
+        res = requests.post(url_finish_picking, headers=self.headers, data=json.dumps(datas_finish_picking))
+        print("创建出库单:", res.json().get("message"))
+
+    #查询出库箱单
+    def search_box_out_list(self):
+        url_search_box_out_list = "https://test-scms.popicorns.com/api/ec-wms-api/transferOut/box/list"
+        datas_search_box_out_list = {
+                                  "current": 1,
+                                  "size": 1,
+                                  "boxNos": [],
+                                  "storageLocationCodes": [],
+                                  "transferOutNos": [],
+                                  "state": "",
+                                  "receiveWarehouseCode": "",
+                                  "createUsername": "",
+                                  "startCreateTime": "",
+                                  "endCreateTime": "",
+                                  "startUpdateTime": "",
+                                  "endUpdateTime": "",
+                                  "sortField": [
+                                    {
+                                      "field": "create_time",
+                                      "type": "DESC"
+                                    }
+                                  ],
+                                  "saleSkuCodes": [],
+                                  "waresSkuCodes": []
+                                }
+        res = requests.post(url_search_box_out_list, headers=self.headers, data=json.dumps(datas_search_box_out_list))
+        return res.json().get("data").get("records")
+
+    #PDA-调拨复核
+    def review_submit(self):
+        box_info = self.search_box_out_list()
+        url_review_submit = "https://test160.popicorns.com/api/ec-wms-api/transferOut/box/review/submit"
+        datas_review_submit = {
+                                    "boxNo": box_info[0].get("boxNo"),
+                                    "storageLocationCode": box_info[0].get("storageLocationCode")
+                                }
+        res = requests.post(url_review_submit, headers=self.headers, data=json.dumps(datas_review_submit))
+        print("调拨复核:", res.json().get("message"))
+
+    #PDA-调拨发货-扫描箱单
+    def handover_bind(self):
+        box_info = self.search_box_out_list()
+        url_handover_bind = "https://test160.popicorns.com/api/ec-wms-api/transferOut/handover/bind"
+        datas_handover_bind = {
+                                "boxNo": box_info[0].get("boxNo"),
+                                "handoverNo": None,
+                                "receiveWarehouseCode": None
+                              }
+        res = requests.post(url_handover_bind, headers=self.headers, data=json.dumps(datas_handover_bind))
+        return res.json().get("data")
+
+    #PDA-调拨发货-发货
+    def delivery_confirm(self):
+        handover_no = self.handover_bind().get("handoverNo")
+        url_delivery_confirm = "https://test160.popicorns.com/api/ec-wms-api/transferOut/handover/delivery/confirm"
+        data_delivery_confirm = {
+                                    "handoverNo": handover_no
+                                }
+        print(data_delivery_confirm)
+        res = requests.post(url_delivery_confirm, headers=self.headers, data=json.dumps(data_delivery_confirm))
+        print("调拨发货:", res.json().get("message"))
 
 
+
+
+    """-------------------------------调拨入库-------------------------------"""
+
+
+    # 查询入库箱单
+    def search_box_in(self):
+
+        url_search_box_in = "https://test-scms.popicorns.com/api/ec-wms-api/transferIn/input/box/page"
+        datas_search_box_in = {
+                                      "current": 1,
+                                      "size": 10,
+                                      "handoverNo": "",
+                                      "transferInNo": "",
+                                      "inState": "",
+                                      "deliveryWarehouseCode": "",
+                                      "boxNos": [],
+                                      "waresSkuCodes": [],
+                                      "startEta": "",
+                                      "endEta": "",
+                                      "startCreateTime": "",
+                                      "endCreateTime": ""
+                                    }
+        res = requests.post(url_search_box_in, headers=self.headers, data=json.dumps(datas_search_box_in))
+        return res.json().get("data").get("records")[0]
+
+
+    # PDA-调拨入库-确认拣货
+    def transfer_in_confirm(self,handover_no):
+        url_transfer_in_confirm = "https://test160.popicorns.com/api/ec-wms-api/transferIn/handover/received/confirm"
+        data_transfer_in_confirm = {
+                                        "handoverNo": handover_no
+                                    }
+        res = requests.post(url_transfer_in_confirm, headers=self.headers, data=json.dumps(data_transfer_in_confirm))
+        print("调拨收货:", res.json().get("message"))
+
+    #PDA-调拨入库-整箱上架
+    def transfer_in_receive_all(self, box_no, location_code):
+        url_search_box = "https://test160.popicorns.com/api/ec-wms-api/transferIn/input/box/detail/pda?boxNo={0}".format(box_no)
+        res = requests.get(url_search_box, headers=self.headers)
+        transfer_in_box_no_info = res.json().get("data")
+        url_receive_all = "https://test160.popicorns.com/api/ec-wms-api/transferIn/input/box/shelf"
+        data_transfer_in_receive_all = {
+                                            "boxNo": transfer_in_box_no_info["boxNo"],
+                                            "storageLocationCode": location_code,
+                                            "transferInNo": transfer_in_box_no_info["transferInNo"]
+                                        }
+        res = requests.post(url_receive_all, headers=self.headers, data=json.dumps(data_transfer_in_receive_all))
+        print("整箱上架：", res.json().get("message"))
+
+
+    #PDA-调拨入库-逐渐上架
+    def transfer_in_receive_one(self, box_no):
+        url_search_box = "https://test160.popicorns.com/api/ec-wms-api/transferIn/input/box/scan/pda"
+        data_search_box = {
+                                "boxNo": box_no,
+                                "type": 2,
+                                "hideError": False
+                            }
+        res = requests.post(url_search_box, headers=self.headers, data=json.dumps(data_search_box))
+        box_info = res.json().get("data")
+        url_transfer_in_receive_one = "https://test160.popicorns.com/api/ec-wms-api/transferIn/input/sku/shelf"
+        data_transfer_in_recevie_one = [
+            {
+                "boxNo": box_no,
+                "storageLocationCode": "KW-SJQ-01",
+                "transferInNo": box_info.get("transferInNo"),
+                "details": [{
+                    "waresSkuCode": "53586714577D01",
+                    "quantity": 5
+                }, {
+                    "waresSkuCode": "53586714577B02",
+                    "quantity": 5
+                }]
+            },
+            {
+                "boxNo": box_no,
+                "storageLocationCode": "KW-SJQ-02",
+                "transferInNo": box_info.get("transferInNo"),
+                "details": [{
+                    "waresSkuCode": "53586714577D01",
+                    "quantity": 3
+                }, {
+                    "waresSkuCode": "53586714577B01",
+                    "quantity": 5
+                }]
+            },
+            {
+                "boxNo": box_no,
+                "storageLocationCode": "KW-SJQ-03",
+                "transferInNo": box_info.get("transferInNo"),
+                "details": [{
+                    "waresSkuCode": "53586714577D01",
+                    "quantity": 2
+                }, {
+                    "waresSkuCode": "53586714577B02",
+                    "quantity": 5
+                }]
+            }
+        ]
+        for item in data_transfer_in_recevie_one:
+            res = requests.post(url_transfer_in_receive_one, headers=self.headers, data=json.dumps(item))
+            print("逐件上架：", res.json().get("message"))
 
 
 if __name__ == '__main__':
 
     """
     测试使用仓库：
-    533	佛山1号备货仓	CNFS02-BH
-    534	佛山2号备货仓	CNFS03-BH
+    533	佛山1号备货仓	CNFS02-BH   KW-SJQ-05   KW-RQ-TP-05
+    534	佛山2号备货仓	CNFS03-BH   KW-SJQ-06   KW-RQ-TP-06
     
     537	佛山1号中转仓	CNFS02-ZZ
     535	佛山2号中转仓	CNFS03-ZZ
     
-    539	英国1号仓	UKBH01
-    540	法国1号仓	ZY-FOR
+    539	英国1号仓	UKBH01      KW-SJQ-01   KW-RQ-TP-01
+    540	法国1号仓	ZY-FOR      KW-SJQ-03   KW-RQ-TP-03
     
-    532	英国2号仓	UKBH02
-    530	休斯顿1号仓	USTX01
+    532	英国2号仓	UKBH02      KW-SJQ-02   KW-RQ-TP-02
+    530	休斯顿1号仓	USTX01      KW-SJQ-04   KW-RQ-TP-04
     """
 
-    warehouse_info = GetWarehouse().switch_warehouse("FSBH")        #切换到预期仓库
+
+    warehouse_info = GetWarehouse().switch_warehouse("CNFS02-BH")        #切换到预期仓库
     authorization = read_ever.GetData().get_authorization("config.json")     #获取token
-
-
     player = Transfer(authorization)
-    # player.del_wares()  # 删除库存
-    # player.add_wares()     #添加库存
 
-    # player.add_demand("FSBH", "LA01", "53586714577", 5, 2)     #新增调拨-备货需求
-    x = player.search_demand()
-    print(x)
-    #player.cancel_demand()      #取消调拨需求
+
+    """--------调拨出库--------"""
+
+    # player.del_wares()  # 删除库存
+    location_code = "KW-SJQ-01"
+    # player.add_wares(location_code)     #添加库存
+    # player.add_demand(0, "UKBH01", "UKBH01", "ZY-FOR", "ZY-FOR", "53586714577", 5, 2)     #新增调拨-备货需求  0:发货仓为-直发/发货/备货   1：发货仓为-中转
+    # player.add_demand(1, "CNFS02-ZZ", "UKBH01", "CNFS03-ZZ", "UKBH01", "53586714577", 5, 2)     #中转仓需求使用
+    # player.cancel_demand()      #取消调拨需求
     # player.create_pick()      #创建拣货单
     # player.assign_picker()      #分配拣货人
     # player.do_picking()     #确认拣货
+    # location_code_tp = "KW-RQ-TP-01"
+    # player.submit_tray_info(location_code_tp)     #按需装托
+    # player.finish_picking(location_code_tp)     #创建拣货单
+    # player.review_submit()      #调拨复核
+    # player.delivery_confirm()       #调拨发货
+
+
+
+
+    """--------调拨入库--------"""
+    #
+    box_in_info = player.search_box_in()    #获取箱号相关信息
+    player.transfer_in_confirm(box_in_info.get("handoverNo"))  #调拨收货
+    player.transfer_in_receive_all(box_in_info.get("boxNo"), "KW-SJQ-01")        #整箱上架
+    # player.transfer_in_receive_one(box_in_info.get("boxNo"))       #逐渐上架
+
+
+
+

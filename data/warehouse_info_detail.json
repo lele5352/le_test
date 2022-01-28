@@ -1,0 +1,344 @@
+[
+	{
+		"warehouseId": 564,
+		"warehouseNameCn": "乐乐备货",
+		"warehouseCode": "LELE-BH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 563,
+		"warehouseNameCn": "乐乐直发",
+		"warehouseCode": "LELE-ZF",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"直发"
+		]
+	},
+	{
+		"warehouseId": 562,
+		"warehouseNameCn": "随便发货仓",
+		"warehouseCode": "SUIBIAN99999",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 561,
+		"warehouseNameCn": "KWDR-TEST",
+		"warehouseCode": "KWDR-TEST",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 560,
+		"warehouseNameCn": "广州发货仓发货仓-发货仓发货仓-发货仓发货仓-发货仓发货仓1",
+		"warehouseCode": "LI-FHCBM-FHCBM-FHCBM",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 543,
+		"warehouseNameCn": "新泽西1号仓",
+		"warehouseCode": "USNJ01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 542,
+		"warehouseNameCn": "洛杉矶1号仓",
+		"warehouseCode": "USLA01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 540,
+		"warehouseNameCn": "法国1号仓",
+		"warehouseCode": "ZY-FOR",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 539,
+		"warehouseNameCn": "英国1号仓",
+		"warehouseCode": "UKBH01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 537,
+		"warehouseNameCn": "佛山1号中转仓",
+		"warehouseCode": "CNFS02-ZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 536,
+		"warehouseNameCn": "佛山3号备货仓",
+		"warehouseCode": "FS04-BH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 535,
+		"warehouseNameCn": "佛山2号中转仓",
+		"warehouseCode": "CNFS03-ZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 534,
+		"warehouseNameCn": "佛山2号备货仓",
+		"warehouseCode": "CNFS03-BH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 533,
+		"warehouseNameCn": "佛山1号备货仓",
+		"warehouseCode": "CNFS02-BH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 532,
+		"warehouseNameCn": "英国2号仓",
+		"warehouseCode": "UKBH02",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 531,
+		"warehouseNameCn": "亚特兰大1号仓",
+		"warehouseCode": "USAT01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 530,
+		"warehouseNameCn": "休斯顿1号仓",
+		"warehouseCode": "USTX01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 529,
+		"warehouseNameCn": "洛杉矶2号仓",
+		"warehouseCode": "USLA02",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 528,
+		"warehouseNameCn": "新泽西2号仓",
+		"warehouseCode": "USNJ02",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 527,
+		"warehouseNameCn": "潘宝中转",
+		"warehouseCode": "PBZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 526,
+		"warehouseNameCn": "BH001yicang",
+		"warehouseCode": "BH001",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 525,
+		"warehouseNameCn": "ZY-FORyicang",
+		"warehouseCode": "ZY-FOR-DEP",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 524,
+		"warehouseNameCn": "CNGZ01-ZZyicang",
+		"warehouseCode": "CNGZ01-ZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 522,
+		"warehouseNameCn": "法国1号仓-b",
+		"warehouseCode": "FR01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 521,
+		"warehouseNameCn": "英国1号仓-a",
+		"warehouseCode": "BH01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 520,
+		"warehouseNameCn": "广州直发仓",
+		"warehouseCode": "GZZF",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 519,
+		"warehouseNameCn": "佛山1号中转仓-a",
+		"warehouseCode": "FS01-ZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 518,
+		"warehouseNameCn": "新泽西1号仓-a",
+		"warehouseCode": "NJ01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 517,
+		"warehouseNameCn": "洛杉矶1号仓-a",
+		"warehouseCode": "LA01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"直发"
+		]
+	},
+	{
+		"warehouseId": 516,
+		"warehouseNameCn": "佛山中转",
+		"warehouseCode": "FSZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 515,
+		"warehouseNameCn": "佛山备货",
+		"warehouseCode": "FSBH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 514,
+		"warehouseNameCn": "艾森直发仓",
+		"warehouseCode": "ESZF",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"直发"
+		]
+	},
+	{
+		"warehouseId": 513,
+		"warehouseNameCn": "艾森发货仓",
+		"warehouseCode": "ESFH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	},
+	{
+		"warehouseId": 512,
+		"warehouseNameCn": "艾森备货仓",
+		"warehouseCode": "ESBH",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 511,
+		"warehouseNameCn": "艾森中转仓",
+		"warehouseCode": "ESZZ",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 510,
+		"warehouseNameCn": "LI-中转仓",
+		"warehouseCode": "LI-ZZC01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"中转"
+		]
+	},
+	{
+		"warehouseId": 509,
+		"warehouseNameCn": "LI-备货仓01",
+		"warehouseCode": "LI-BHC01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"备货"
+		]
+	},
+	{
+		"warehouseId": 508,
+		"warehouseNameCn": "LI-发货仓01",
+		"warehouseCode": "LI-FHC01",
+		"warehouseType": "自营",
+		"operatingMode": [
+			"发货"
+		]
+	}
+]

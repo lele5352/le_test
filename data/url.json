@@ -2,7 +2,8 @@
   "login": {
     "login_url": "https://test-scms.popicorns.com/api/ec-ums-api/user/login",
     "list_warehouse_url": "https://test-scms.popicorns.com/api/ec-wms-api/data/permission/user/list?t=",
-    "switch_url": "https://test-scms.popicorns.com/api/ec-wms-api/data/permission/switchdefault"
+    "switch_url": "https://test-scms.popicorns.com/api/ec-wms-api/data/permission/switchdefault",
+    "search_warehouse_info_detail": "https://test-scms.popicorns.com/api/ec-wms-api/warehouse/page"
   },
   "frozen_receipt": {
     "frozen_url": "https://test-26.popicorns.com/api/ec-stockoperation-api/frozenReceipt",

@@ -40,6 +40,7 @@ class GetData(object):
         for i in info:
             if i.get("warehouseCode") == wareshouse_code:
                 warehouse_info = {
+                    "id": i.get("id"),
                     "warehouseId": i.get("warehouseId"),
                     "warehouseCode": i.get("warehouseCode"),
                     "warehouseName": i.get("warehouseName")
