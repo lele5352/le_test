@@ -204,61 +204,61 @@ class Transfer:
         warehouse_info = read_ever.GetData().get_wareshouse_info(wareshouse_code)
         return warehouse_info
 
+
     #创建调拨需求-备货
-    def add_demand(self, type, delivery_warehouse_code, delivery_target_warehouse_code, receive_warehouse_code, receive_target_warehouse_code, sku_code, qty, num):
+    def add_demand(self, delivery_warehouse_code, delivery_target_warehouse_code, receive_warehouse_code, receive_target_warehouse_code, sku_code, qty, num):
         url_add_demand = 'https://test-scms.popicorns.com/api/ec-oms-api/demand/create'
 
         delivery_warehouse_info = self.get_warehouse_info(delivery_warehouse_code)
         receive_warehouse_info = self.get_warehouse_info(receive_warehouse_code)
-        receive_target_warehouse_info = self.get_warehouse_info(receive_target_warehouse_code)
         delivery_target_warehouse_info = self.get_warehouse_info(delivery_target_warehouse_code)
+        receive_target_warehouse_info = self.get_warehouse_info(receive_target_warehouse_code)
 
-        data_demand = [
-            {
-                            "deliveryWarehouseId": delivery_warehouse_info.get("warehouseId"),
-                            "deliveryWarehouseName": delivery_warehouse_info.get("warehouseName"),
-                            "deliveryWarehouseCode": delivery_warehouse_info.get("warehouseCode"),
-                            "receiveWarehouseId": receive_warehouse_info.get("warehouseId"),
-                            "receiveWarehouseName": receive_warehouse_info.get("warehouseName"),
-                            "receiveWarehouseCode":  receive_warehouse_info.get("warehouseCode"),
-                            "remark": "",
-                            "details": [
-                                {
-                                    "itemSkuCode": sku_code,
-                                    "itemSkuType": 1,
-                                    "quantity": qty,
-                                    "itemPicture": "https://img.popicorns.com/dev/file/2021/11/08/8cbba5e1160a48e9bd9b43e54450ab7c.jpg"
-                                }
-                            ]
-                        },
-            {
-                          "deliveryWarehouseId": delivery_warehouse_info.get("warehouseId"),
-                          "deliveryWarehouseName": delivery_warehouse_info.get("warehouseName"),
-                          "deliveryWarehouseCode": delivery_warehouse_info.get("warehouseCode"),
-                          "deliveryTargetWarehouseId": delivery_target_warehouse_info.get("warehouseId"),
-                          "deliveryTargetWarehouseName": delivery_target_warehouse_info.get("warehouseName"),
-                          "deliveryTargetWarehouseCode": delivery_target_warehouse_info.get("warehouseCode"),
-                          "receiveWarehouseId": receive_warehouse_info.get("warehouseId"),
-                          "receiveWarehouseName": receive_warehouse_info.get("warehouseName"),
-                          "receiveWarehouseCode": receive_warehouse_info.get("warehouseCode"),
-                          "receiveTargetWarehouseName": receive_target_warehouse_info.get("warehouseName"),
-                          "receiveTargetWarehouseCode": receive_target_warehouse_info.get("warehouseCode"),
-                          "receiveTargetWarehouseId": receive_target_warehouse_info.get("warehouseId"),
-                          "remark": "",
-                          "details": [
-                            {
-                              "itemSkuCode": sku_code,
-                              "itemSkuType": 1,
-                              "quantity": qty,
-                              "itemPicture": "https://img.popicorns.com/dev/file/2021/11/08/8cbba5e1160a48e9bd9b43e54450ab7c.jpg"
-                            }
-                          ]
-                        }
-        ]
+        if delivery_target_warehouse_info:
+            delivery_target_warehouse_id = delivery_target_warehouse_info.get("warehouseId")
+            delivery_target_warehouse_code = delivery_target_warehouse_info.get("warehouseCode")
+            delivery_target_warehouse_name = delivery_target_warehouse_info.get("warehouseName")
+        else:
+            delivery_target_warehouse_id = None
+            delivery_target_warehouse_code = None
+            delivery_target_warehouse_name = None
+
+        if receive_target_warehouse_info:
+            receive_target_warehouse_id = receive_target_warehouse_info.get("warehouseId")
+            receive_target_warehouse_code = receive_target_warehouse_info.get("warehouseCode")
+            receive_target_warehouse_name = receive_target_warehouse_info.get("warehouseName")
+        else:
+            receive_target_warehouse_id = None
+            receive_target_warehouse_code = None
+            receive_target_warehouse_name = None
+
+        data_demand = {
+                  "deliveryWarehouseId": delivery_warehouse_info.get("warehouseId"),
+                  "deliveryWarehouseName": delivery_warehouse_info.get("warehouseName"),
+                  "deliveryWarehouseCode": delivery_warehouse_info.get("warehouseCode"),
+                  "deliveryTargetWarehouseId": delivery_target_warehouse_id,
+                  "deliveryTargetWarehouseName": delivery_target_warehouse_name,
+                  "deliveryTargetWarehouseCode": delivery_target_warehouse_code,
+                  "receiveWarehouseId": receive_warehouse_info.get("warehouseId"),
+                  "receiveWarehouseName": receive_warehouse_info.get("warehouseName"),
+                  "receiveWarehouseCode": receive_warehouse_info.get("warehouseCode"),
+                  "receiveTargetWarehouseName": receive_target_warehouse_name,
+                  "receiveTargetWarehouseCode": receive_target_warehouse_code,
+                  "receiveTargetWarehouseId": receive_target_warehouse_id,
+                  "remark": "",
+                  "details": [
+                    {
+                      "itemSkuCode": sku_code,
+                      "itemSkuType": 1,
+                      "quantity": qty,
+                      "itemPicture": "https://img.popicorns.com/dev/file/2021/11/08/8cbba5e1160a48e9bd9b43e54450ab7c.jpg"
+                    }
+                  ]
+            }
 
         time.sleep(1)
         for i in range(num):
-            res = requests.post(url_add_demand, headers=self.headers, data=json.dumps(data_demand[type]))
+            res = requests.post(url_add_demand, headers=self.headers, data=json.dumps(data_demand))
             print('备货需求{0}新增:'.format(i) + res.json().get('message'))
 
     #查询调拨需求
@@ -632,7 +632,7 @@ if __name__ == '__main__':
     """
 
 
-    warehouse_info = GetWarehouse().switch_warehouse("CNFS02-BH")        #切换到预期仓库
+    warehouse_info = GetWarehouse().switch_warehouse("CNFS03-ZZ")        #切换到预期仓库
     authorization = read_ever.GetData().get_authorization("config.json")     #获取token
     player = Transfer(authorization)
 
@@ -641,9 +641,9 @@ if __name__ == '__main__':
 
     # player.del_wares()  # 删除库存
     location_code = "KW-SJQ-01"
-    # player.add_wares(location_code)     #添加库存
-    # player.add_demand(0, "UKBH01", "UKBH01", "ZY-FOR", "ZY-FOR", "53586714577", 5, 2)     #新增调拨-备货需求  0:发货仓为-直发/发货/备货   1：发货仓为-中转
-    # player.add_demand(1, "CNFS02-ZZ", "UKBH01", "CNFS03-ZZ", "UKBH01", "53586714577", 5, 2)     #中转仓需求使用
+    player.add_wares(location_code)     #添加库存
+    # player.add_demand("UKBH01", "", "ZY-FOR", "", "53586714577", 5, 2)     #新增调拨-备货需求
+    # player.add_demand("CNFS02-ZZ", "UKBH01", "CNFS03-ZZ", "UKBH01", "53586714577", 5, 2)     #中转仓需求使用
     # player.cancel_demand()      #取消调拨需求
     # player.create_pick()      #创建拣货单
     # player.assign_picker()      #分配拣货人
@@ -658,10 +658,9 @@ if __name__ == '__main__':
 
 
     """--------调拨入库--------"""
-    #
-    box_in_info = player.search_box_in()    #获取箱号相关信息
-    player.transfer_in_confirm(box_in_info.get("handoverNo"))  #调拨收货
-    player.transfer_in_receive_all(box_in_info.get("boxNo"), "KW-SJQ-01")        #整箱上架
+    # box_in_info = player.search_box_in()    #获取箱号相关信息
+    # player.transfer_in_confirm(box_in_info.get("handoverNo"))  #调拨收货
+    # player.transfer_in_receive_all(box_in_info.get("boxNo"), "KW-SJQ-01")        #整箱上架
     # player.transfer_in_receive_one(box_in_info.get("boxNo"))       #逐渐上架
 
 

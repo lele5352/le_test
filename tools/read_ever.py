@@ -37,6 +37,7 @@ class GetData(object):
 
     def get_wareshouse_info(self, wareshouse_code):
         info = GetData().get_data("warehouse.json")
+        warehouse_info = {}
         for i in info:
             if i.get("warehouseCode") == wareshouse_code:
                 warehouse_info = {
@@ -45,8 +46,10 @@ class GetData(object):
                     "warehouseCode": i.get("warehouseCode"),
                     "warehouseName": i.get("warehouseName")
                 }
-        return warehouse_info
-
+        if warehouse_info:
+            return warehouse_info
+        else:
+            return None
 
 
 

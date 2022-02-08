@@ -95,7 +95,7 @@ class Login(object):
             "dataPermId": warehouse_info.get("id")
         }
         res = ApiLogin().api_put_switch_warehouse(url, authorization, datas)
-        print(res.json().get("message"),"切换仓库结果：", warehouse_code)
+        print(res.json().get("message"), "切换仓库结果：", warehouse_code)
         return warehouse_info
 
 if __name__ == '__main__':
